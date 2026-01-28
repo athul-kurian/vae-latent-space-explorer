@@ -62,10 +62,43 @@ python gui.py
 
 Use the GUI controls to modify latent variables and observe how the generated digit changes.
 
-## 🧠 How It Works
+## 🧠 VAE Architecture
 
-A **Variational Autoencoder (VAE)** learns a continuous latent representation of data.  
-By decoding different latent vectors, the model generates new images. Nearby points in latent space produce visually similar digits.
+This project implements a **convolutional Variational Autoencoder (VAE)** designed for MNIST digits.
+
+### Encoder
+
+- Input: `1 × 28 × 28` grayscale image
+- Two strided convolutional layers
+- Outputs latent mean (`μ`) and log-variance (`logσ²`)
+
+**Layers**
+- Conv2d(1 → 16, kernel=4, stride=2) + ReLU
+- Conv2d(16 → 32, kernel=4, stride=2) + ReLU
+- Flatten
+- Linear(32×7×7 → latent_dim) → `μ`
+- Linear(32×7×7 → latent_dim) → `logσ²`
+
+### Reparameterization
+
+```
+z = μ + exp(0.5 · logσ²) ⊙ ε,   ε ~ N(0, I)
+```
+
+### Decoder
+
+- Linear(latent_dim → 32×7×7)
+- Reshape → feature maps
+- ConvTranspose2d(32 → 16, kernel=4, stride=2) + ReLU
+- ConvTranspose2d(16 → 1, kernel=4, stride=2) + Tanh
+
+### Forward Pass
+
+1. Encode image → `μ`, `logσ²`
+2. Sample latent vector `z`
+3. Decode `z` → reconstructed image
+4. Return reconstruction and latent statistics
+
 
 ## 📦 Model Weights
 
