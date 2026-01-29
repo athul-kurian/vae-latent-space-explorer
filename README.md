@@ -69,7 +69,7 @@ This project implements a **convolutional Variational Autoencoder (VAE)** design
 ### Encoder
 
 - Input image: 1x28x28
-- > Conv2d(in_channels=1, out_channels=16, kernel_size=4, stride=2, padding=1) + ReLU
+- Conv2d(in_channels=1, out_channels=16, kernel_size=4, stride=2, padding=1) + ReLU
   - Weight Matrix: 16 x 4 x 4
   - Output: 16 x 14 x 14
 - Conv2d(in_channels=16, out_channels=32, kernel_size=4, stride=2, padding=1) + ReLU
