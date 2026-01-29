@@ -68,67 +68,40 @@ This project implements a **convolutional Variational Autoencoder (VAE)** design
 
 ### Encoder
 
-- Input: `1 × 28 × 28` grayscale image
-- Two strided convolutional layers
-- Outputs latent mean (`μ`) and log-variance (`logσ²`)
-
-**Layers**
-- Conv2d(1 → 16, kernel=4, stride=2) + ReLU
-- Conv2d(16 → 32, kernel=4, stride=2) + ReLU
-- Flatten
-- Linear(32×7×7 → latent_dim) → `μ`
-- Linear(32×7×7 → latent_dim) → `logσ²`
+- Input image: 1x28x28
+- Conv2d(in_channels=1, out_channels=16, kernel_size=4, stride=2, padding=1) + ReLU
+- - Weight Matrix: 16 x 4 x 4
+- - Output: 16 x 14 x 14
+- Conv2d(in_channels=16, out_channels=32, kernel_size=4, stride=2, padding=1) + ReLU
+- - Weight Matrix: 32 x 4 x 4
+- - Ouput: 32 x 7 x 7
+- Flatten layer: flattens each input from 32 x 7 x 7 to 1 x 1568
+- Linear(in_features=1568, out_features=6)
+- - Outputs the mean vector of the latent Gaussian distribution; The mean vector has a length of 6 corresponding to the 6 latent dimensions
+- - Weight Matrix: (6, 1568)
+- Linear(in_features=1568, out_features=6)
+- - Ouputs the log-variance vector of the latent Gaussian distribution; We assume a dioganal co-variance matrix, so each latent dimension has an independent co-variance
 
 ### Reparameterization
 
+-- Instead of sampling directly from the latent distribution, we sample from a standard normal distribution and scale and shift it using the predicted mean and variance.
+
 ```
-z = μ + exp(0.5 · logσ²) ⊙ ε,   ε ~ N(0, I)
+z = μ + exp(0.5*logσ²) * ε,   ε ~ N(0, 1)
 ```
 
 ### Decoder
 
-- Linear(latent_dim → 32×7×7)
-- Reshape → feature maps
-- ConvTranspose2d(32 → 16, kernel=4, stride=2) + ReLU
-- ConvTranspose2d(16 → 1, kernel=4, stride=2) + Tanh
-
-### Forward Pass
-
-1. Encode image → `μ`, `logσ²`
-2. Sample latent vector `z`
-3. Decode `z` → reconstructed image
-4. Return reconstruction and latent statistics
+- Linear(in_features=latent_dim, out_features=32*7*7)
+- Reshape: Converts linear output to feature maps
+- ConvTranspose2d(in_channels=32, out_channels=16, kernel_size=4, stride=2, padding=1) + ReLU
+- ConvTranspose2d(in_channels=16, out_channels=input_dim, kernel_size=4, stride=2, padding=1) + Tanh
 
 
-## 📦 Model Weights
+## 📦 Decoder Weights
 
 The pretrained decoder weights are stored in:
 
 ```
 decoder_weights.pt
 ```
-
-These weights are loaded automatically by the decoder code.
-
-## 📝 Example Usage
-
-```python
-from decoder import Decoder
-import torch
-
-model = Decoder()
-model.load_state_dict(torch.load("decoder_weights.pt"))
-model.eval()
-
-z = torch.randn(1, 2)
-img = model.decode(z)
-```
-
-## 📌 Notes
-
-- This is an educational project intended for understanding VAEs and latent spaces
-- You can extend this project to other datasets or higher-dimensional latent spaces
-
-## 📜 License
-
-Specify your license here.
