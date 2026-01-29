@@ -73,14 +73,14 @@ This project implements a **convolutional Variational Autoencoder (VAE)** design
   - Weight Matrix: 16 x 4 x 4
   - Output: 16 x 14 x 14
 - Conv2d(in_channels=16, out_channels=32, kernel_size=4, stride=2, padding=1) + ReLU
-- - Weight Matrix: 32 x 4 x 4
-- - Ouput: 32 x 7 x 7
+  - Weight Matrix: 32 x 4 x 4
+  - Ouput: 32 x 7 x 7
 - Flatten layer: flattens each input from 32 x 7 x 7 to 1 x 1568
 - Linear(in_features=1568, out_features=6)
-- - Outputs the mean vector of the latent Gaussian distribution; The mean vector has a length of 6 corresponding to the 6 latent dimensions
-- - Weight Matrix: (6, 1568)
+  - Outputs the mean vector of the latent Gaussian distribution; The mean vector has a length of 6 corresponding to the 6 latent dimensions
+  - Weight Matrix: (6, 1568)
 - Linear(in_features=1568, out_features=6)
-- - Ouputs the log-variance vector of the latent Gaussian distribution; We assume a dioganal co-variance matrix, so each latent dimension has an independent co-variance
+  - Ouputs the log-variance vector of the latent Gaussian distribution; We assume a dioganal co-variance matrix, so each latent dimension has an independent co-variance
 
 ### Reparameterization
 
