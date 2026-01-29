@@ -2,30 +2,12 @@
   <img src="https://github.com/athul-kurian/vae-latent-space-explorer/blob/main/assets/banner.gif" alt="" style="width:100%; height:auto;"/>
 </p>
 
-# VAE Latent Space Explorer
+## 🧠 Overview
 
-A simple tool to explore the **latent space of a Variational Autoencoder (VAE)** trained on handwritten digit images (e.g., MNIST).  
+A simple tool to explore the **latent space of a Variational Autoencoder (VAE)model** trained on handwritten digit images (MNIST).  
 This project allows you to visualize and generate digit images by sampling or navigating the VAE’s latent space.
 
-## 🎯 Features
-
-- 🧠 Decode latent vectors into images using a pretrained VAE decoder
-- 🖼️ Interactive GUI to explore the latent space and view generated digits in real time
-- 📝 Jupyter notebook demonstrating latent space sampling and visualization
-
-## 📁 Repository Structure
-
-```
-├── assets/                     # Static assets
-├── decoder.py                  # VAE decoder implementation
-├── gui.py                      # GUI for latent space exploration
-├── LatentDigits.ipynb          # Notebook demo
-├── decoder_weights.pt          # Pretrained decoder weights
-├── .gitignore
-└── README.md
-```
-
-## 🚀 Getting Started
+## 🚀 How to Use
 
 ### 🛠️ Requirements
 
