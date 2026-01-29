@@ -70,8 +70,8 @@ This project implements a **convolutional Variational Autoencoder (VAE)** design
 
 - Input image: 1x28x28
 - Conv2d(in_channels=1, out_channels=16, kernel_size=4, stride=2, padding=1) + ReLU
-- - Weight Matrix: 16 x 4 x 4
-- - Output: 16 x 14 x 14
+  - Weight Matrix: 16 x 4 x 4
+  - Output: 16 x 14 x 14
 - Conv2d(in_channels=16, out_channels=32, kernel_size=4, stride=2, padding=1) + ReLU
 - - Weight Matrix: 32 x 4 x 4
 - - Ouput: 32 x 7 x 7
@@ -84,7 +84,7 @@ This project implements a **convolutional Variational Autoencoder (VAE)** design
 
 ### Reparameterization
 
--- Instead of sampling directly from the latent distribution, we sample from a standard normal distribution and scale and shift it using the predicted mean and variance.
+- Instead of sampling directly from the latent distribution, we sample from a standard normal distribution and scale and shift it using the predicted mean and variance.
 
 ```
 z = μ + exp(0.5*logσ²) * ε,   ε ~ N(0, 1)
