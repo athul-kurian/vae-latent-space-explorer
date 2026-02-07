@@ -75,7 +75,7 @@ z = μ + exp(0.5*logσ²) * ε,   ε ~ N(0, 1)
 ### Decoder
 
 - Linear(in_features=latent_dim, out_features=32*7*7)
-- Reshape: Converts linear output to feature maps
+- Reshape: Converts linear output to feature maps (from 1x1568 to 32 x 7 x 7)
 - ConvTranspose2d(in_channels=32, out_channels=16, kernel_size=4, stride=2, padding=1) + ReLU
 - ConvTranspose2d(in_channels=16, out_channels=input_dim, kernel_size=4, stride=2, padding=1) + Tanh
 
@@ -85,5 +85,5 @@ z = μ + exp(0.5*logσ²) * ε,   ε ~ N(0, 1)
 The pretrained decoder weights are stored in:
 
 ```
-decoder_weights.pt
+[decoder_weights.pt](https://github.com/athul-kurian/vae-latent-space-explorer/blob/main/decoder_weights.pt)
 ```
