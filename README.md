@@ -84,6 +84,4 @@ z = μ + exp(0.5*logσ²) * ε,   ε ~ N(0, 1)
 
 The pretrained decoder weights are stored in:
 
-```
 [decoder_weights.pt](https://github.com/athul-kurian/vae-latent-space-explorer/blob/main/decoder_weights.pt)
-```
