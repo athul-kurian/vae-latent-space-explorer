@@ -4,7 +4,7 @@
 
 ## 🧠 Overview
 
-A simple tool to explore the **latent space of a Variational Autoencoder (VAE)model** trained on handwritten digit images (MNIST).  
+A tool to explore the **latent space of a Variational Autoencoder (VAE)model** trained on handwritten digit images (MNIST).  
 This project allows you to visualize and generate digit images by sampling or navigating the VAE’s latent space.
 
 ## 🚀 How to Use
@@ -24,17 +24,6 @@ pip install torch matplotlib numpy
 ```
 
 > Note: `tkinter` is usually included with Python installations.
-
-### 🧪 Running the Notebook
-
-```bash
-jupyter notebook LatentDigits.ipynb
-```
-
-This notebook demonstrates:
-- Loading the pretrained decoder
-- Sampling points in latent space
-- Visualizing generated digits
 
 ### 🖥️ Running the GUI
 
@@ -80,8 +69,26 @@ z = μ + exp(0.5*logσ²) * ε,   ε ~ N(0, 1)
 - ConvTranspose2d(in_channels=16, out_channels=input_dim, kernel_size=4, stride=2, padding=1) + Tanh
 
 
+### 🧪 Training
+
+The code used to build and train the model can be found here in [LatentDigits.ipynb](https://github.com/athul-kurian/vae-latent-space-explorer/blob/main/LatentDigits.ipynb)
+
+Key training parameters (from the notebook):
+- Dataset: torchvision MNIST, both train and test splits concatenated.
+- Preprocessing: `ToTensor()` then `Normalize((0.5,), (0.5,))` to map pixels to [-1, 1] for the decoder’s `tanh` output.
+- Latent dimension: 6.
+- Batch size: 128, with shuffling.
+- Epochs: 200.
+- Optimizer: Adam with learning rate 5e-3.
+- Loss: sum of pixel-wise MSE reconstruction loss + KL divergence term (no β-scaling).
+- Device: `cuda` if available, otherwise CPU.
+
+This notebook demonstrates:
+- Loading the pretrained decoder
+- Sampling points in latent space
+- Visualizing generated digits
+
+
 ## 📦 Decoder Weights
 
-The pretrained decoder weights are stored in:
-
-[decoder_weights.pt](https://github.com/athul-kurian/vae-latent-space-explorer/blob/main/decoder_weights.pt)
+The trained decoder weights are stored in [decoder_weights.pt](https://github.com/athul-kurian/vae-latent-space-explorer/blob/main/decoder_weights.pt)
