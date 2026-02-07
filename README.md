@@ -80,8 +80,8 @@ Key training parameters (from the notebook):
 - Batch size: 128, with shuffling.
 - Epochs: 200.
 - Optimizer: Adam with learning rate 5e-3.
-- Loss: sum of pixel-wise MSE reconstruction loss + KL divergence term (no β-scaling).
-- Device: `cuda` if available, otherwise CPU.
+- Loss: sum of pixel-wise MSE reconstruction loss + KL divergence term.
+- Device: T4 GPU.
 
 This notebook demonstrates:
 - Loading the pretrained decoder
