@@ -60,12 +60,13 @@ z = μ + exp(0.5*logσ²) * ε,   ε ~ N(0, 1)
 ```
 
 ### Decoder
-
+```
 - Linear(in_features=latent_dim, out_features=32*7*7)
 - Reshape: Converts linear output to feature maps (from 1 x 1568 to 32 x 7 x 7)
 - ConvTranspose2d(in_channels=32, out_channels=16, kernel_size=4, stride=2, padding=1) + ReLU
 - ConvTranspose2d(in_channels=16, out_channels=input_dim, kernel_size=4, stride=2, padding=1) + Tanh
 
+```
 
 ### 🧪 Training
 
@@ -80,12 +81,6 @@ Key training parameters (from the notebook):
 - Optimizer: Adam with learning rate 5e-3.
 - Loss: sum of pixel-wise MSE reconstruction loss + KL divergence term.
 - Device: T4 GPU.
-
-This notebook demonstrates:
-- Loading the pretrained decoder
-- Sampling points in latent space
-- Visualizing generated digits
-
 
 ## 📦 Decoder Weights
 
