@@ -54,7 +54,6 @@ Use the GUI controls to modify latent variables and observe how the generated di
 ### Reparameterization
 
 - Instead of sampling directly from the latent distribution, we sample from a standard normal distribution and scale and shift it using the predicted mean and variance.
-
 ```
 z = μ + exp(0.5*logσ²) * ε,   ε ~ N(0, 1)
 ```
