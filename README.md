@@ -35,7 +35,7 @@ Use the GUI controls to modify latent variables and observe how the generated di
 ## 🧠 VAE Architecture
 
 ### Encoder
-
+```
 - Input image: 1x28x28
 - Conv2d(in_channels=1, out_channels=16, kernel_size=4, stride=2, padding=1) + ReLU
   - Weight Matrix: 16 x 4 x 4
@@ -49,6 +49,7 @@ Use the GUI controls to modify latent variables and observe how the generated di
   - Weight Matrix: (6, 1568)
 - Linear(in_features=1568, out_features=6)
   - Ouputs the log-variance vector of the latent Gaussian distribution; We assume a dioganal co-variance matrix, so each latent dimension has an independent co-variance
+```
 
 ### Reparameterization
 
