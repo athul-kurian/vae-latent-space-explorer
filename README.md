@@ -64,7 +64,7 @@ z = μ + exp(0.5*logσ²) * ε,   ε ~ N(0, 1)
 ### Decoder
 
 - Linear(in_features=latent_dim, out_features=32*7*7)
-- Reshape: Converts linear output to feature maps (from 1x1568 to 32 x 7 x 7)
+- Reshape: Converts linear output to feature maps (from 1 x 1568 to 32 x 7 x 7)
 - ConvTranspose2d(in_channels=32, out_channels=16, kernel_size=4, stride=2, padding=1) + ReLU
 - ConvTranspose2d(in_channels=16, out_channels=input_dim, kernel_size=4, stride=2, padding=1) + Tanh
 
@@ -74,8 +74,8 @@ z = μ + exp(0.5*logσ²) * ε,   ε ~ N(0, 1)
 The code used to build and train the model can be found here in [LatentDigits.ipynb](https://github.com/athul-kurian/vae-latent-space-explorer/blob/main/LatentDigits.ipynb)
 
 Key training parameters (from the notebook):
-- Dataset: torchvision MNIST, both train and test splits concatenated.
-- Preprocessing: `ToTensor()` then `Normalize((0.5,), (0.5,))` to map pixels to [-1, 1] for the decoder’s `tanh` output.
+- Dataset: torchvision MNIST (80,000 1x28x28 images)
+- Preprocessing: `ToTensor()` then `Normalize((0.5,), (0.5,))` to map pixels from [0, 1] to [-1, 1] for the decoder’s `tanh` output.
 - Latent dimension: 6.
 - Batch size: 128, with shuffling.
 - Epochs: 200.
