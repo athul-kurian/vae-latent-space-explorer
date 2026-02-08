@@ -4,8 +4,7 @@
 
 ## 🧠 Overview
 
-A tool to explore the **latent space of a Variational Autoencoder (VAE)model** trained on handwritten digit images (MNIST).  
-This project allows you to visualize and generate digit images by sampling or navigating the VAE’s latent space.
+A tool to explore the **latent space of a Variational Autoencoder (VAE)model** trained on handwritten digit images (MNIST). This project allows you to visualize and generate digit images by sampling or navigating the VAE’s latent space.
 
 ## 🚀 How to Use
 
@@ -34,8 +33,6 @@ python gui.py
 Use the GUI controls to modify latent variables and observe how the generated digit changes.
 
 ## 🧠 VAE Architecture
-
-This project implements a **convolutional Variational Autoencoder (VAE)** designed for MNIST digits.
 
 ### Encoder
 
